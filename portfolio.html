@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f4f6;
+      color: #1e3a8a;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    body.dark {
+      background-color: #1f2937;
+      color: #e5e7eb;
+    }
+    .section-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    nav {
+      background-color: #1e3a8a;
+      color: #ffffff;
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    body.dark nav {
+      background-color: #374151;
+      color: #e5e7eb;
+    }
+    nav .section-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav h1 {
+      font-size: 24px;
+      font-weight: bold;
+      color: #ffffff;
+    }
+    body.dark nav h1 {
+      color: #e5e7eb;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    nav ul li a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 16px;
+    }
+    body.dark nav ul li a {
+      color: #e5e7eb;
+    }
+    nav ul li a:hover {
+      color: #93c5fd;
+    }
+    body.dark nav ul li a:hover {
+      color: #bfdbfe;
+    }
+    #theme-toggle {
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: #ffffff;
+      cursor: pointer;
+    }
+    body.dark #theme-toggle {
+      color: #e5e7eb;
+    }
+    section {
+      padding: 60px 0;
+    }
+    #about {
+      background-color: #ffffff;
+    }
+    body.dark #about {
+      background-color: #111827;
+    }
+    #about h2 {
+      font-size: 36px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 30px;
+      color: #1e3a8a;
+    }
+    body.dark #about h2 {
+      color: #bfdbfe;
+    }
+    #about .profile-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 4px solid #e5e7eb;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin: 0 auto 20px;
+      display: block;
+    }
+    body.dark #about .profile-img {
+      border-color: #4b5563;
+      box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+    }
+    #about p {
+      font-size: 18px;
+      line-height: 1.6;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      color: #4b5563;
+    }
+    body.dark #about p {
+      color: #d1d5db;
+    }
+    #skills {
+      background-color: #f3f4f6;
+    }
+    body.dark #skills {
+      background-color: #374151;
+    }
+    #skills h2 {
+      font-size: 36px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 30px;
+      color: #1e3a8a;
+    }
+    body.dark #skills h2 {
+      color: #bfdbfe;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+    }
+    .skill-card {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    body.dark .skill-card {
+      background-color: #4b5563;
+      box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+    }
+    .skill-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+    }
+    body.dark .skill-card:hover {
+      box-shadow: 0 8px 12px rgba(255, 255, 255, 0.15);
+    }
+    .skill-card img {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 10px;
+    }
+    .skill-card h3 {
+      font-size: 20px;
+      font-weight: bold;
+      color: #1f2937;
+    }
+    body.dark .skill-card h3 {
+      color: #e5e7eb;
+    }
+    #projects {
+      background-color: #ffffff;
+    }
+    body.dark #projects {
+      background-color: #111827;
+    }
+    #projects h2 {
+      font-size: 36px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 30px;
+      color: #1e3a8a;
+    }
+    body.dark #projects h2 {
+      color: #bfdbfe;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .project-card {
+      background-color: #f9fafb;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    body.dark .project-card {
+      background-color: #4b5563;
+      box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+    }
+    body.dark .project-card:hover {
+      box-shadow: 0 8px 12px rgba(255, 255, 255, 0.15);
+    }
+    .project-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    .project-card h3 {
+      font-size: 20px;
+      font-weight: bold;
+      color: #1f2937;
+      margin-bottom: 10px;
+    }
+    body.dark .project-card h3 {
+      color: #e5e7eb;
+    }
+    .project-card p {
+      font-size: 16px;
+      color: #4b5563;
+      margin-bottom: 10px;
+    }
+    body.dark .project-card p {
+      color: #d1d5db;
+    }
+    .project-card a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+    body.dark .project-card a {
+      color: #60a5fa;
+    }
+    .project-card a:hover {
+      color: #1e40af;
+    }
+    body.dark .project-card a:hover {
+      color: #93c5fd;
+    }
+    #internships {
+      background-color: #f3f4f6;
+    }
+    body.dark #internships {
+      background-color: #374151;
+    }
+    #internships h2 {
+      font-size: 36px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 30px;
+      color: #1e3a8a;
+    }
+    body.dark #internships h2 {
+      color: #bfdbfe;
+    }
+    .internships-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .internship-card {
+      background-color: #f9fafb;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    body.dark .internship-card {
+      background-color: #4b5563;
+      box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+    }
+    .internship-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+    }
+    body.dark .internship-card:hover {
+      box-shadow: 0 8px 12px rgba(255, 255, 255, 0.15);
+    }
+    .internship-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    .internship-card h3 {
+      font-size: 20px;
+      font-weight: bold;
+      color: #1f2937;
+      margin-bottom: 10px;
+    }
+    body.dark .internship-card h3 {
+      color: #e5e7eb;
+    }
+    .internship-card p {
+      font-size: 16px;
+      color: #4b5563;
+      margin-bottom: 10px;
+    }
+    body.dark .internship-card p {
+      color: #d1d5db;
+    }
+    .internship-card a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+    body.dark .internship-card a {
+      color: #60a5fa;
+    }
+    .internship-card a:hover {
+      color: #1e40af;
+    }
+    body.dark .internship-card a:hover {
+      color: #93c5fd;
+    }
+    #contact {
+      background-color: #1e3a8a;
+      color: #ffffff;
+    }
+    body.dark #contact {
+      background-color: #374151;
+      color: #e5e7eb;
+    }
+    #contact h2 {
+      font-size: 36px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 30px;
+      color: #ffffff;
+    }
+    body.dark #contact h2 {
+      color: #e5e7eb;
+    }
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .contact-links a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    body.dark .contact-links a {
+      color: #e5e7eb;
+    }
+    .contact-links a:hover {
+      color: #93c5fd;
+    }
+    body.dark .contact-links a:hover {
+      color: #bfdbfe;
+    }
+    footer {
+      background-color: #1f2937;
+      color: #ffffff;
+      padding: 15px 0;
+      text-align: center;
+    }
+    body.dark footer {
+      background-color: #111827;
+      color: #e5e7eb;
+    }
+    footer p {
+      font-size: 16px;
+      color: #ffffff;
+    }
+    body.dark footer p {
+      color: #e5e7eb;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="section-container">
+      <h1>My Portfolio</h1>
+      <div>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#internships">Internships</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <button id="theme-toggle">🌙</button>
+        </ul>
+        
+      </div>
+    </div>
+  </nav>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="section-container">
+      <h2>About Me</h2>
+      <img src="profile.jpg" alt="Profile Picture" class="profile-img">
+      <p>
+       I'm a detail-oriented data analyst with a strong background in transforming complex data into actionable insights. Proficient in SQL, Excel, Python, and data visualization tools like Tableau and Power BI, I thrive on uncovering trends, optimizing processes, and supporting data-driven decision-making. I’m passionate about turning raw numbers into clear stories that drive business results.
+      </p>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills">
+    <div class="section-container">
+      <h2>Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <img src="download.jpg" alt="Java Logo">
+          <h3>Java</h3>
+        </div>
+        <div class="skill-card">
+          <img src="python.jpg" alt="Python Logo">
+          <h3>Python</h3>
+        </div>
+        <div class="skill-card">
+          <img src="mysql.jpg" alt="SQL Logo">
+          <h3>SQL</h3>
+        </div>
+        <div class="skill-card">
+          <img src="github.png" alt="GitHub Logo">
+          <h3>GitHub</h3>
+        </div>
+        <div class="skill-card">
+          <img src="html.jpg" alt="HTML Logo">
+          <h3>HTML</h3>
+        </div>
+        <div class="skill-card">
+          <img src="css.jpg" alt="CSS Logo">
+          <h3>CSS</h3>
+        </div>
+        <div class="skill-card">
+          <img src="react.png" alt="React Logo">
+          <h3>React</h3>
+        </div>
+        <div class="skill-card">
+          <img src="excel.jpg" alt="Excel Logo">
+          <h3>Excel</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <div class="section-container">
+      <h2>Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <img src="autobots.png">
+          <h3>Automobile website</h3>
+          <p>An automobile online store  built with html and css, featuring user authentication and payment integration.</p>
+          <a href="https://github.com/yourusername/ecommerce-project" target="_blank">GitHub Link</a>
+        </div>
+        <div class="project-card">
+          <img src="chatbot.avif" alt="Caht bot">
+          <h3>Chatbot</h3>
+          <p>A personalized chatbot for our needs.</p>
+          <a href="https://github.com/yourusername/data-dashboard" target="_blank">GitHub Link</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Internships Section -->
+  <section id="internships">
+    <div class="section-container">
+      <h2>Internships</h2>
+      <div class="internships-grid">
+        <div class="internship-card">
+          <img src="ai&ml.jpg" alt="AI&ML Internship">
+          <h3>Artificial intelligence and machine learning</h3>
+          <p>Tech Corp</p>
+          <p>April 2025 - May 2025</p>
+          <a href="https://github.com/yourusername/AI&ML internship" target="_blank">GitHub Link</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="section-container">
+      <h2>Contact Me</h2>
+      <div class="contact-links">
+        <a href="mailto:your.email@gmail.com">
+          <span>📧</span> arvindreddy953@gmail.com
+        </a>
+        <a href="https://wa.me/7780304828" target="_blank">
+          <span>📱</span> +91 7780304828
+        </a>
+        <a href="https://github.com/niklaus91" target="_blank">
+          <span>🐙</span> GitHub
+        </a>
+        <a href="https://linkedin.com/in/Aravind Kumar Reddy" target="_blank">
+          <span>💼</span> LinkedIn
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Aravind. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const toggleButton = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    // Load saved theme from localStorage
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    if (savedTheme === 'dark') {
+      body.classList.add('dark');
+      toggleButton.textContent = '☀';
+    } else {
+      toggleButton.textContent = '🌙';
+    }
+
+    // Theme toggle event listener
+    toggleButton.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      const newTheme = body.classList.contains('dark') ? 'dark' : 'light';
+      localStorage.setItem('theme', newTheme);
+      toggleButton.textContent = newTheme === 'dark' ? '☀' : '🌙';
+    });
+  </script>
+</body>
+</html>
