@@ -1,9 +1,9 @@
-- 👋 Hi, I’m @niklaus91
-- 👀 I’m interested in cars,movies
-- 🌱 I’m currently learning python
+- 👋 Hi, I’m Aravind Kumar Reddy
+- 👀 I’m interested in cars, movies
+- 🌱 I’m currently learning Python
 - 💞️ I’m looking to collaborate on anything
 - 📫 How to reach me 
-- 😄 Pronouns: 
+- 😄 Pronouns: he/him
 - ⚡ Fun fact: ...
 
 <!---
